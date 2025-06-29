@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gianluca & Sharon - 28 Agosto 2026</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #fefefe;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 8px 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e8e8e8;
+        }
+
+        .language-toggle button {
+            background: none;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-family: 'Lora', serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: #2c3e50;
+        }
+
+        .language-toggle button.active {
+            background: #8b9dc3;
+            color: white;
+        }
+
+        .language-toggle button:hover:not(.active) {
+            background: #f8f9fa;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(139, 157, 195, 0.8), rgba(70, 130, 180, 0.8)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="ocean" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23e3f2fd"/><stop offset="50%" style="stop-color:%23bbdefb"/><stop offset="100%" style="stop-color:%234fc3f7"/></linearGradient></defs><rect width="1200" height="400" fill="url(%23ocean)"/><ellipse cx="600" cy="300" rx="200" ry="80" fill="%23fff3e0" opacity="0.6"/><circle cx="100" cy="750" r="25" fill="%23ffcc80" opacity="0.7"/><circle cx="200" cy="720" r="15" fill="%23ffab91" opacity="0.6"/><circle cx="1000" cy="760" r="20" fill="%23bcaaa4" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .date {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .location {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #8b9dc3;
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .timeline {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #8b9dc3;
+        }
+
+        .timeline-time {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #8b9dc3;
+            min-width: 80px;
+            margin-right: 20px;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .timeline-content p {
+            color: #5a6c7d;
+            font-size: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .info-card p {
+            color: #5a6c7d;
+            line-height: 1.8;
+        }
+
+        .info-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #8b9dc3;
+        }
+
+        .rsvp-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .rsvp-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .directions-button {
+            display: inline-block;
+            background: #8b9dc3;
+            color: white;
+            padding: 10px 27px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 157, 195, 0.3);
+        }
+
+        .directions-button:hover {
+            background: #7a8bb0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 157, 195, 0.4);
+        }
+        
+        .rsvp-button {
+            display: inline-block;
+            background: #8b9dc3;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 157, 195, 0.3);
+        }
+
+        .rsvp-button:hover {
+            background: #7a8bb0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 157, 195, 0.4);
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        .beach-accent {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="%23fefefe"/></svg>');
+            background-size: cover;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .date {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline-time {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-toggle">
+        <button onclick="switchLanguage('it')" class="lang-btn active" data-lang="it">IT</button>
+        <button onclick="switchLanguage('en')" class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- Italian Content -->
+    <div class="lang-content" data-lang="it">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Gianluca & Sharon</h1>
+                <div class="date">28 Agosto 2026 • ore 19:00</div>
+                <div class="location">Hotel La Playa, Patti (ME)</div>
+            </div>
+            <div class="beach-accent"></div>
+        </section>
+
+        <section class="section">
+            <h2>Il Nostro Giorno Speciale</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #5a6c7d; margin-bottom: 50px; font-style: italic;">
+                Con grande gioia vi invitiamo a celebrare il nostro matrimonio sulla splendida spiaggia di Patti,
+                dove le onde del mare faranno da colonna sonora al nostro "sì".
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">19:00</div>
+                    <div class="timeline-content">
+                        <h3>Cerimonia sulla Spiaggia</h3>
+                        <p>La cerimonia si svolgerà sulla spiaggia dell'Hotel La Playa con vista sulle Isole Eolie e lo scoglio di Patti</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">20:00</div>
+                    <div class="timeline-content">
+                        <h3>Aperitivo di Benvenuto</h3>
+                        <p>Brindisi e aperitivo con vista mare per celebrare insieme questo momento unico</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">21:00</div>
+                    <div class="timeline-content">
+                        <h3>Cena & Festa</h3>
+                        <p>Cena di gala seguita da musica e balli per festeggiare fino a tarda notte</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Informazioni Pratiche</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="icon">🏨</div>
+                    <h3>Dove Alloggiare</h3>
+                    <p><strong>Hotel La Playa</strong><br>
+                        Via Playa, 98066 Patti (ME)<br>
+                        Tel: +39 0941 361398<br><br>
+                        Tariffe speciali disponibili per gli ospiti del matrimonio. Contattate l'hotel citando
+                        "Matrimonio Regis-Furuli".</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🚗</div>
+                    <h3>Come Arrivare</h3>
+                    <p><strong>In Auto:</strong> A20 uscita Patti, seguire indicazioni per Hotel La Playa<br><br>
+                        <strong>In Treno:</strong> Stazione di Patti-San Piero Patti, poi taxi (10 min)<br><br>
+                        <a href="https://maps.app.goo.gl/YzagSQ81ZevYNRkr7" target="_blank" class="directions-button">Ottieni indicazioni</a>
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">👗</div>
+                    <h3>Dress Code</h3>
+                    <p><strong>Elegante ma Comodo</strong><br><br>
+                        Considerando la location sulla spiaggia, consigliamo abiti eleganti ma pratici.
+                        Le signore potrebbero preferire tacchi bassi o sandali eleganti per camminare sulla sabbia.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🎁</div>
+                    <h3>Regalo di Nozze</h3>
+                    <p><strong>La vostra presenza sarà il dono più bello!</strong><br><br>
+                        Per chi desiderasse farci un regalo, il più gradito sarà un contributo al nostro futuro insieme.<br>
+                        In tal caso, potete fare un bonifico al seguente IBAN: IT68S0503410104000000007257
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="rsvp-section">
+            <div class="rsvp-content">
+                <h2 style="color: #2c3e50; margin-bottom: 30px;">Confermate la Vostra Presenza</h2>
+                <p style="font-size: 1.1rem; color: #5a6c7d; margin-bottom: 30px;">
+                    Vi preghiamo di confermare la vostra partecipazione entro il <strong>30 giugno 2026</strong>
+                    per permetterci di organizzare al meglio questo giorno speciale.
+                </p>
+                <a href="https://forms.gle/PoiteRsVSk9Q2gDM8" target="_blank"
+                    class="rsvp-button">Conferma Presenza</a>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #7a8bb0;">
+                    Oppure chiamate/Whatsapp:<br>Gianluca +39 348 6089962 • Sharon +39 392 7636369
+                </p>
+            </div>
+        </section>
+        <footer class="footer">
+            <p>Gianluca Regis & Sharon Furuli • 28 Agosto 2026 • Hotel La Playa, Patti (ME)</p>
+            </footer>
+    </div>
+
+    <!-- English Content -->
+    <div class="lang-content" data-lang="en">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Gianluca & Sharon</h1>
+                <div class="date">August 28<sup>th</sup>, 2026 • 7:00 PM</div>
+                <div class="location">Hotel La Playa, Patti (ME), Italy</div>
+            </div>
+            <div class="beach-accent"></div>
+        </section>
+
+        <section class="section">
+            <h2>Our Special Day</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #5a6c7d; margin-bottom: 50px; font-style: italic;">
+                With great joy, we invite you to celebrate our wedding on the beautiful beach of Patti,
+                where the sound of the waves will be the soundtrack to our "I do".
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">7:00 PM</div>
+                    <div class="timeline-content">
+                        <h3>Beach Ceremony</h3>
+                        <p>The ceremony will take place on Hotel La Playa's beach overlooking the Aeolian Islands and the Patti Rock</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:00 PM</div>
+                    <div class="timeline-content">
+                        <h3>Welcome Cocktail</h3>
+                        <p>Toast and cocktails with sea view to celebrate this unique moment together</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">9:00 PM</div>
+                    <div class="timeline-content">
+                        <h3>Dinner & Party</h3>
+                        <p>Gala dinner followed by music and dancing to celebrate until late night</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Practical Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="icon">🏨</div>
+                    <h3>Where to Stay</h3>
+                    <p><strong>Hotel La Playa</strong><br>
+                        Via Playa, 98066 Patti (ME), Italy<br>
+                        Tel: +39 0941 361398<br><br>
+                        Special rates available for wedding guests. Contact the hotel mentioning "Regis-Furuli Wedding".
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🚗</div>
+                    <h3>How to Get There</h3>
+                    <p><strong>By Car:</strong> A20 highway, Patti exit, follow signs to Hotel La Playa<br><br>
+                        <strong>By Train:</strong> Patti-San Piero Patti station, then taxi (10 min)<br><br>
+                        <a href="https://maps.app.goo.gl/YzagSQ81ZevYNRkr7" target="_blank" class="directions-button">Get directions</a>
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">👗</div>
+                    <h3>Dress Code</h3>
+                    <p><strong>Elegant but Comfortable</strong><br><br>
+                        Considering the beach location, we recommend elegant but practical attire.
+                        Ladies might prefer low heels or elegant sandals for walking on the sand.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon">🎁</div>
+                    <h3>Wedding Registry</h3>
+                    <p>Your presence is the most beautiful gift!<br><br>
+                        If you'd like to give us a present, the most appreciated would be a contribution to our future together.<br>
+                        In that case, you can make a bank transfer to the following IBAN: IT68S0503410104000000007257
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="rsvp-section">
+            <div class="rsvp-content">
+                <h2 style="color: #2c3e50; margin-bottom: 30px;">Please Confirm Your Attendance</h2>
+                <p style="font-size: 1.1rem; color: #5a6c7d; margin-bottom: 30px;">
+                    Please confirm your attendance by <strong>June 30<sup>th</sup>, 2026</strong>
+                    to allow us to organize this special day perfectly.
+                </p>
+                <a href="https://forms.gle/PoiteRsVSk9Q2gDM8" target="_blank"
+                    class="rsvp-button">Confirm Attendance</a>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #7a8bb0;">
+                    Or call/Whatsapp:<br>Gianluca +39 348 6089962 • Sharon +39 392 7636369
+                </p>
+            </div>
+        </section>
+        <footer class="footer">
+            <p>Gianluca Regis & Sharon Furuli • August 28<sup>th</sup>, 2026 • Hotel La Playa, Patti (ME)</p>
+        </footer>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Hide all language content
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Show selected language content
+            document.querySelector(`.lang-content[data-lang="${lang}"]`).classList.add('active');
+
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+
+            // Update page language attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Smooth scrolling for any internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        var preferredLanguage = navigator.language;
+        
+        if (typeof preferredLanguage === 'string' && preferredLanguage.indexOf('it') > -1) {
+            switchLanguage('it');
+        } else {
+            switchLanguage('en');
+        }
+        
+    </script>
+</body>
+
+</html>
