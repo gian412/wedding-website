@@ -302,7 +302,7 @@
             width: 100%;
         }
 
-        .rsvp form button {
+        .rsvp button {
             grid-column: span 2;
             padding: 1rem;
             border: none;
@@ -313,7 +313,7 @@
             cursor: pointer
         }
 
-        .rsvp form button:hover {
+        .rsvp button:hover {
             filter: brightness(.95)
         }
 
@@ -493,7 +493,7 @@
         <section id="rsvp" class="rsvp">
             <h2 data-i18n="rsvp.title">RSVP</h2>
             <p data-i18n="rsvp.desc">We’d love to know if you can make it!</p>
-            <form
+            <!--<form
                 onsubmit="event.preventDefault(); alert(window.i18nState.lang==='it' ? 'Grazie! Abbiamo ricevuto il tuo RSVP.' : 'Thanks! Your RSVP has been received.');">
                 <input required type="text" placeholder="Full name" aria-label="Full name"
                     data-i18n-placeholder="rsvp.name" />
@@ -503,8 +503,8 @@
                     <option value="yes">Happily attending</option>
                     <option value="no">Regretfully declining</option>
                 </select>
-                <button type="submit" data-i18n="rsvp.button">Send RSVP</button>
-            </form>
+            </form>-->
+            <a href="https://forms.gle/9BYhCNk7E4v6mFpU7" target="_blank"><button data-i18n="rsvp.button">Send RSVP</button></a>
         </section>
 
         <section id="gift" class="info">
