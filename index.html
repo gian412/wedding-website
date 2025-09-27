@@ -289,7 +289,7 @@
         }
 
         .rsvp {
-            background: linear-gradient(135deg, rgba(110, 198, 255, .15), rgba(26, 188, 156, .12));
+            background: linear-gradient(135deg, rgba(110, 198, 255, .15), rgba(110, 198, 255, .15));
             border: 1px solid rgba(110, 198, 255, .25);
             border-radius: 18px;
             padding: 2rem;
@@ -323,7 +323,7 @@
             padding: 1rem;
             border: none;
             border-radius: 12px;
-            background: var(--sea-teal);
+            background: var(--sky);
             color: white;
             font-weight: 700;
             cursor: pointer
@@ -334,12 +334,26 @@
         }
 
         .info {
-            margin: 3rem 0
+            margin: 3rem 0;
         }
 
         .info h2 {
             font-family: 'Playfair Display', serif;
-            color: var(--sea-navy)
+            color: var(--sea-navy);
+            text-align: center;
+        }
+        
+        .info h3 {
+            margin-bottom: 0px;
+        }
+        
+        .info h4 {
+            /*font-family: 'Playfair Display', serif;*/
+            font-size: smaller;
+            font-weight: 500;
+            padding-top: 0px;
+            margin-top: 2px;
+            color: var(--muted)
         }
 
         .footer {
@@ -347,7 +361,7 @@
             text-align: center;
             padding: 2rem 1rem;
             color: var(--muted);
-            background: linear-gradient(to right, rgba(110, 198, 255, .15), rgba(26, 188, 156, .12));
+            background: linear-gradient(to right, rgba(110, 198, 255, .15), rgba(110, 198, 255, .15));
         }
 
         @media (max-width: 700px) {
@@ -479,9 +493,12 @@
 
         <section id="travel" class="info">
             <h2 data-i18n="travel.title">Accommodation</h2>
+            <!-- 31 ottobre -->
             <p data-i18n="travel.subtitle">Options and prices (for 2 people unless noted).</p>
             <div class="accom">
                 <h3 data-i18n="travel.hotel3.title">Hotel bungalows & rooms (3 nights, Aug 27–30)</h3>
+                <h4 data-i18n="travel.hotel3.subtitle">To make a reservation at Hotel La Playa, we invite you to contact the property
+                    directly at <a href="tel:0662287376">06 6228 7376</a></h4>
                 <ul>
                     <li data-i18n="travel.hotel3.bb">Bed & Breakfast: €360</li>
                     <li data-i18n="travel.hotel3.hb">Half Board: €550</li>
@@ -491,6 +508,8 @@
                 </ul>
 
                 <h3 data-i18n="travel.hotel7.title">Hotel bungalows & rooms (7 nights, Aug 23–30)</h3>
+                <h4 data-i18n="travel.hotel7.subtitle">To make a reservation at Hotel La Playa, we invite you to contact the property
+                    directly at <a href="tel:0662287376">06 6228 7376</a></h4>
                 <ul>
                     <li data-i18n="travel.hotel7.bb">Bed & Breakfast: €840</li>
                     <li data-i18n="travel.hotel7.hb">Half Board: €1200</li>
@@ -500,6 +519,9 @@
                 </ul>
 
                 <h3 data-i18n="travel.nearby.title">Nearby rooms (~20 mins) with breakfast</h3>
+                <h4 data-i18n="travel.nearby.subtitle">To make a reservation at Agri Turismo, we invite you to contact the property
+                    directly at <a href="tel:3466331798">346
+                        6331798</a></h4>
                 <ul>
                     <li data-i18n="travel.nearby.price">TBD</li>
                 </ul>
@@ -509,17 +531,7 @@
         <section id="rsvp" class="rsvp">
             <h2 data-i18n="rsvp.title">RSVP</h2>
             <p data-i18n="rsvp.desc">We’d love to know if you can make it!</p>
-            <!--<form
-                onsubmit="event.preventDefault(); alert(window.i18nState.lang==='it' ? 'Grazie! Abbiamo ricevuto il tuo RSVP.' : 'Thanks! Your RSVP has been received.');">
-                <input required type="text" placeholder="Full name" aria-label="Full name"
-                    data-i18n-placeholder="rsvp.name" />
-                <input required type="email" placeholder="Email" aria-label="Email"
-                    data-i18n-placeholder="rsvp.email" />
-                <select aria-label="Attendance" data-i18n-select="rsvp.options">
-                    <option value="yes">Happily attending</option>
-                    <option value="no">Regretfully declining</option>
-                </select>
-            </form>-->
+            <!-- Entro il 28 giugno 2026 -->
             <a href="https://forms.gle/9BYhCNk7E4v6mFpU7" target="_blank"><button data-i18n="rsvp.button">Send RSVP</button></a>
         </section>
 
@@ -618,7 +630,7 @@
                 'event.location.value': 'Hotel Club la Playa - Via Playa, 3, 98066 Patti ME',
 
                 'event.reception.title': 'Reception',
-                'event.reception.text': 'Immediately after the ceremony',
+                'event.reception.text': 'Immediately after the ceremony, in the same location',
 
                 'event.dress.title': 'Dress Code',
                 'event.dress.text': 'The wedding will take place on the beach, but the ground is firm and even, so heels are fine—wide heels are recommended. Dress code is free; only the bride wears white!',
@@ -626,26 +638,25 @@
                 'travel.title': 'Accommodation',
                 'travel.subtitle': 'Options and prices (for 2 people unless noted).',
                 'travel.hotel3.title': 'Hotel bungalows & rooms (3 nights, Aug 27–30)',
-                'travel.hotel3.bb': 'Bed & Breakfast: €360',
-                'travel.hotel3.hb': 'Half Board: €550',
-                'travel.hotel3.fb': 'Full Board: €700',
+                'travel.hotel3.subtitle': 'To make a reservation at Hotel La Playa (same location as the ceremony), we invite you to contact the property directly at <a href="tel:0662287376">06 6228 7376</a> (Please mention: Sharon and Gianluca\'s wedding for the below discounted prices).<br/>If you would like to reserve a room , please contact them by <b>October <sup>31</sup>, 2025</b>, as rooms tend to sell out quickly during high season.',
+                'travel.hotel3.bb': 'Bed & Breakfast: € 360',
+                'travel.hotel3.hb': 'Half Board: € 550',
+                'travel.hotel3.fb': 'Full Board: € 700',
                 'travel.hotel3.extra': '3rd/4th bed discounted 20%–50% based on age',
 
                 'travel.hotel7.title': 'Hotel bungalows & rooms (7 nights, Aug 23–30)',
-                'travel.hotel7.bb': 'Bed & Breakfast: €840',
-                'travel.hotel7.hb': 'Half Board: €1200',
-                'travel.hotel7.fb': 'Full Board: €1500',
+                'travel.hotel7.subtitle': 'To make a reservation at Hotel La Playa (same location as the ceremony), we invite you to contact the property directly at <a href="tel:0662287376">06 6228 7376</a> (Please mention: Sharon and Gianluca\'s wedding for the below discounted prices).<br/>If you would like to reserve a room , please contact them by <b>October <sup>31</sup>, 2025</b>, as rooms tend to sell out quickly during high season.',
+                'travel.hotel7.bb': 'Bed & Breakfast: € 840',
+                'travel.hotel7.hb': 'Half Board: € 1200',
+                'travel.hotel7.fb': 'Full Board: € 1500',
                 'travel.hotel7.extra': '3rd/4th bed discounted 20%–50% based on age',
 
                 'travel.nearby.title': 'Nearby rooms (~20 mins) with breakfast',
-                'travel.nearby.price': 'TBD',
-                //'travel.nearby.price': '€60 per person per night',
+                'travel.nearby.subtitle': 'To make a reservation at Agri Turismo, we invite you to contact the property directly at <a href="tel:3466331798">346 6331798</a> (Please mention: Sharon and Gianluca\'s wedding for the belopw discounted prices)',
+                'travel.nearby.price': 'Bed & Breakfast: € 60 per person per night',
 
                 'rsvp.title': 'RSVP',
-                'rsvp.desc': 'We’d love to know if you can make it!',
-                'rsvp.name': 'Full name',
-                'rsvp.email': 'Email',
-                'rsvp.options': [ 'Happily attending', 'Regretfully declining' ],
+                'rsvp.desc': 'We’d love to celebrate with you!<br/>Let us know by <b>June 28<sup>th</sup>, 2026</b> if you’ll be joining us and if you’ll bring a +1.',
                 'rsvp.button': 'Send RSVP',
 
                 'registry.title': 'Wedding Gift',
@@ -681,7 +692,7 @@
                 'event.location.value': 'Hotel Club la Playa - Via Playa, 3, 98066 Patti ME',
 
                 'event.reception.title': 'Ricevimento',
-                'event.reception.text': 'Subito dopo la cerimonia',
+                'event.reception.text': 'Subito dopo la cerimonia nella stessa location',
 
                 'event.dress.title': 'Dress Code',
                 'event.dress.text': 'Il matrimonio si svolgerà sulla spiaggia, ma il fondo è comodo e battuto, quindi si possono usare scarpe col tacco, anche se si consiglia un tacco largo. Dress code libero, ma di bianco solo la sposa!',
@@ -689,26 +700,25 @@
                 'travel.title': 'Alloggi',
                 'travel.subtitle': 'Opzioni e prezzi (per 2 persone; salvo diversa indicazione).',
                 'travel.hotel3.title': 'Bungalow e camere in hotel (3 notti, 27–30 Agosto)',
+                'travel.hotel3.subtitle': 'Per effettuare una prenotazione presso Hotel La Playa (stessa location del matrimonio), ti invitiamo a contattare direttamente la struttura al numero <a href="tel:0662287376">06 6228 7376</a> (menzionare "Matrimonio Sharon e Gianluca" per le tariffe speciali elencate).<br/>Se desiderate riservare una stanza, vi invitiamo a contattarli entro il <b>31 ottobre 2025</b>, poiché nei mesi di alta stagione le camere si esauriscono rapidamente.',
                 'travel.hotel3.bb': 'Camera e colazione: € 360',
                 'travel.hotel3.hb': 'Mezza pensione: € 550',
                 'travel.hotel3.fb': 'Pensione completa: € 700',
                 'travel.hotel3.extra': 'Terzo e quarto letto scontati dal 20% al 50% in base all’età, gratis sotto i 5 anni',
 
                 'travel.hotel7.title': 'Bungalow e camere in hotel (7 notti, 23–30 Agosto)',
+                'travel.hotel7.subtitle': 'Per effettuare una prenotazione presso Hotel La Playa (stessa location del matrimonio), ti invitiamo a contattare direttamente la struttura al numero <a href="tel:0662287376">06 6228 7376</a> (menzionare "Matrimonio Sharon e Gianluca" per le tariffe speciali elencate).<br/>Se desiderate riservare una stanza, vi invitiamo a contattarli entro il <b>31 ottobre 2025</b>, poiché nei mesi di alta stagione le camere si esauriscono rapidamente.',
                 'travel.hotel7.bb': 'Camera e colazione: € 840',
                 'travel.hotel7.hb': 'Mezza pensione: € 1200',
                 'travel.hotel7.fb': 'Pensione completa: € 1500',
                 'travel.hotel7.extra': 'Terzo e quarto letto scontati dal 20% al 50% in base all’età, gratis sotto i 5 anni',
 
                 'travel.nearby.title': 'Camere vicine (~20 min) con colazione',
-                'travel.nearby.price': 'Presto in arrivo',
-                //'travel.nearby.price': '€ 60 a persona a notte',
+                'travel.nearby.subtitle': 'Per effettuare una prenotazione presso Agri Turismo, ti invitiamo a contattare direttamente la struttura al numero <a href="tel:3466331798">346 6331798</a> (menzionare "Matrimonio Sharon e Gianluca" per le tariffe speciali elencate)',
+                'travel.nearby.price': 'Camera e colazione: € 60 a persona a notte',
 
                 'rsvp.title': 'RSVP',
-                'rsvp.desc': 'Facci sapere se potrai esserci!',
-                'rsvp.name': 'Nome e cognome',
-                'rsvp.email': 'Email',
-                'rsvp.options': [ 'Parteciperò con gioia', 'Purtroppo non potrò venire' ],
+                'rsvp.desc': 'Saremo felici di festeggiare con te! <br/>Facci sapere entro il <b>28 giugno 2026</b> se ci sarai e se porterai un +1.',
                 'rsvp.button': 'Invia RSVP',
 
                 'registry.title': 'Regalo di Nozze',
